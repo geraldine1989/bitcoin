@@ -6,6 +6,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import 'tabler-react/dist/Tabler.css';
+import { loadBitcoin } from 'src/store/reducer';
 /**
  * import : local
  */
@@ -21,3 +22,4 @@ const target = document.getElementById('root');
 // 1 - Le composant à rendre
 // 2 - La cible dans le DOM
 render(rootComponent, target);
+store.dispatch(loadBitcoin());
