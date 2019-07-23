@@ -14,7 +14,6 @@ const initialState = {
 const DO_SOMETHING = 'DO_SOMETHING';
 export const LOAD_BITCOIN = 'LOAD_BITCOIN';
 export const RECEIVED_BITCOIN = 'RECEVEID_BITCOIN';
-export const LOGIN_SUBMIT = 'LOGIN_SUBMIT';
 const HANDLE_LOGIN = 'HANDLE_LOGIN';
 
 /**
@@ -42,14 +41,18 @@ const reducer = (state = initialState, action = {}) => {
         bitcoin: action.bitcoin,
       };
     case HANDLE_LOGIN:
+      if (state.loggedIn === true) {
+        return {
+          ...state,
+          loggedIn: false,
+        };
+      }
       return {
         ...state,
         loggedIn: true,
       };
-      case LOGIN_SUBMIT:
-      return {
-        ...state,
-      };
+      
+   
     default:
       return state;
   }
@@ -71,9 +74,6 @@ export const receivedBitcoin = bitcoin => ({
   bitcoin,
 });
 
-export const loginSubmit = () => ({
-  type: LOGIN_SUBMIT,
-});
 export const handleLogin = () => ({
   type: HANDLE_LOGIN,
 });

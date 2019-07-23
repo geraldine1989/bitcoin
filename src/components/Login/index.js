@@ -15,7 +15,7 @@ const Login = ({ handleLogin }) => {
   // }
   return (
     <div id="login" >
-      <button onClick={handleLogin}>entrezz</button>
+      <button onClick={handleLogin}>Se connecter</button>
   {/* <GoogleLogin
     clientId="326302789976-oocj06u09gb1en8rbsjuighdegvipcdc.apps.googleusercontent.com"
     buttonText="Login"

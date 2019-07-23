@@ -1,11 +1,12 @@
 
 import React from 'react';
 import PropsTypes from 'prop-types';
-import { Card } from 'tabler-react';
+import { Card, Button } from 'tabler-react';
 
-const Bitcoin = ({ bitcoin } ) => (
+const Bitcoin = ({ bitcoin, handleLogin } ) => (
   <div id="bitcoin" >
-    <p>coucou je suis dans bitcoin</p>
+        <Button color="primary" onClick={handleLogin}> Se déconnecter</Button>
+
     <Card>
         <Card.Header>
           <Card.Title>Cours du bitcoin</Card.Title>
@@ -20,6 +21,7 @@ const Bitcoin = ({ bitcoin } ) => (
 
 Bitcoin.propTypes = {
   bitcoin: PropsTypes.string.isRequired,
+  handleLogin: PropsTypes.func.isRequired,
 };
 
 export default Bitcoin;

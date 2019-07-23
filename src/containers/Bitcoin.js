@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Bitcoin from 'src/components/Bitcoin';
 
 // Action Creators
-import { doSomething, loginSubmit } from 'src/store/reducer';
+import { doSomething, handleLogin } from 'src/store/reducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -22,10 +22,12 @@ const mapStateToProps = (state, ownProps) => ({
   message: state.message,
   clic: state.clic,
   bitcoin: state.bitcoin,
+  login: state.loggedIn,
 });
 const mapDispatchToProps = dispatch => ({
-  loginSubmit: () => {
-    dispatch(loginSubmit());
+
+  handleLogin: () => {
+    dispatch(handleLogin());
   },
 });
 
