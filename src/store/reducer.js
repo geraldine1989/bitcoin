@@ -2,19 +2,19 @@
  * Initial State
  */
 const initialState = {
-  message: 'Hello',
-  clic: 0,
   bitcoin: '',
-  loggedIn: false,
+  redirect: false,
+  postdata: {}, 
 };
 
 /**
  * Types
  */
-const DO_SOMETHING = 'DO_SOMETHING';
 export const LOAD_BITCOIN = 'LOAD_BITCOIN';
 export const RECEIVED_BITCOIN = 'RECEVEID_BITCOIN';
-const HANDLE_LOGIN = 'HANDLE_LOGIN';
+export const SIGN_UP = 'SIGN_UP';
+const SIGNOUT = 'SIGNOUT';
+
 
 /**
  * Traitements
@@ -24,13 +24,8 @@ const HANDLE_LOGIN = 'HANDLE_LOGIN';
  * Reducer
  */
 const reducer = (state = initialState, action = {}) => {
+  const { postdata } = state;
   switch (action.type) {
-    case DO_SOMETHING:
-      return {
-        ...state,
-        clic: state.clic + 1,
-      };
-
     case LOAD_BITCOIN:
       return {
         ...state,
@@ -40,19 +35,32 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         bitcoin: action.bitcoin,
       };
-    case HANDLE_LOGIN:
-      if (state.loggedIn === true) {
-        return {
-          ...state,
-          loggedIn: false,
-        };
-      }
+    case SIGN_UP:
+      if (action.response.w3.U3) {
+        postdata.name = action.response.w3.ig,
+        postdata.provider = 'google',
+        postdata.email= action.response.w3.U3,
+        postdata.provider_id= action.response.El,
+        postdata.token= action.response.Zi.access_token,
+        postdata.provider_pic= action.response.w3.Paa
+        }
       return {
         ...state,
-        loggedIn: true,
+        ...postdata,
+        redirect: true,
       };
-      
-   
+    case SIGNOUT:
+      return {
+        ...state,
+        redirect: false,
+        postdata: {},
+        name: '',
+        provider: '',
+        email: '',
+        provider_id: '',
+        token: '',
+        provider_pic: '',
+      };
     default:
       return state;
   }
@@ -61,10 +69,6 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const doSomething = () => ({
-  type: DO_SOMETHING,
-});
-
 export const loadBitcoin = () => ({
   type: LOAD_BITCOIN,
 });
@@ -74,12 +78,17 @@ export const receivedBitcoin = bitcoin => ({
   bitcoin,
 });
 
-export const handleLogin = () => ({
-  type: HANDLE_LOGIN,
+export const signup = response => ({
+  type: SIGN_UP,
+  response,
 });
-/**
- * Selectors
- */
+
+export const signout = () => (
+  {
+    type: SIGNOUT,
+  }
+);
+
 
 /**
  * Export

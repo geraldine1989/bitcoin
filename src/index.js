@@ -5,29 +5,31 @@ import '@babel/polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import 'tabler-react/dist/Tabler.css';
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { BrowserRouter } from 'react-router-dom';
 import { loadBitcoin } from 'src/store/reducer';
+
 /**
  * import : local
  */
 import store from 'src/store';
-import App from 'src/components/App';
+import App from 'src/containers/App';
+
 
 /**
  * Render - Rendu d'un composant React dans le DOM
  */
 
 const rootComponent = (
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
-  );
+  
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
+);
+
 const target = document.getElementById('root');
-// 1 - Le composant à rendre
-// 2 - La cible dans le DOM
+
 render(rootComponent, target);
 store.dispatch(loadBitcoin());
+

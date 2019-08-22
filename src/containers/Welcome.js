@@ -1,38 +1,40 @@
-
 /**
  * Npm import
  */
 import { connect } from 'react-redux';
+
 /**
  * Local import
  */
-import Login from 'src/components/Login';
+import Welcome from 'src/components/Welcome';
 
 // Action Creators
-import { signup } from 'src/store/reducer';
+import { signup, signout } from 'src/store/reducer';
 
 // State
-
 const mapStateToProps = (state, ownProps) => ({
-  loginError: state.loginError,
+  bitcoin: state.bitcoin,
   redirect: state.redirect,
+  postdata: state.postdata,
 });
-// Actions
 
+// Actions
 const mapDispatchToProps = (dispatch, ownProps) => ({
   signup: (response) => {
     dispatch(signup(response));
   },
+  signout: () => {
+    dispatch(signout());
+  },
 });
 
 // Container
-const LoginContainer = connect(
+const WelcomeContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Login);
-
+)(Welcome);
 
 /**
  * Export
  */
-export default LoginContainer;
+export default WelcomeContainer;

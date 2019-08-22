@@ -1,38 +1,33 @@
-
 import React from 'react';
 import PropsTypes from 'prop-types';
-import { GoogleLogin } from 'react-google-login';
+import { NavLink } from 'react-router-dom';
+import GoogleLogin from 'react-google-login';
+import { Header } from 'tabler-react';
+import 'tabler-react/dist/Tabler.css';
 
-
-const Login = ({ handleLogin }) => {
+const Login = ({ signup }) => {
   const responseGoogle = (response) => {
-    console.log(response);
-  }
+    signup(response);
+  };
 
-  // const handleLogin = () => {
-  //   console.log('je suis dans component');
-  //   loginSubmit();
-  // }
   return (
-    <div id="login" >
-      <button onClick={handleLogin}>Se connecter</button>
-
-      <GoogleLogin
-        clientId="326302789976-oocj06u09gb1en8rbsjuighdegvipcdc.apps.googleusercontent.com"
-        buttonText="LOGIN WITH GOOGLE"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-      />
-  
-  
+    <div id="Login">
+      <Header.H2>Bitcoin</Header.H2>
+      
+      <NavLink exact to="/Welcome" className="login-button">
+        <GoogleLogin
+          clientId="326302789976-oocj06u09gb1en8rbsjuighdegvipcdc.apps.googleusercontent.com"
+          buttonText="LOGIN WITH GOOGLE"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+        />
+      </NavLink>
     </div>
-   
   );
-}
+};
 
 Login.propTypes = {
-  handleLogin: PropsTypes.func.isRequired,
-
+  signup: PropsTypes.func.isRequired,
 };
 
 export default Login;
