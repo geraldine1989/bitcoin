@@ -5,17 +5,21 @@ import GoogleLogin from 'react-google-login';
 import { Header } from 'tabler-react';
 import 'tabler-react/dist/Tabler.css';
 
+import './index.scss';
+
+
 const Login = ({ signup }) => {
   const responseGoogle = (response) => {
     signup(response);
   };
 
   return (
-    <div id="Login">
-      <Header.H2>Bitcoin</Header.H2>
+    <div id="login">
+      <Header.H2 className="login-header">Bitcoin</Header.H2>
       
-      <NavLink exact to="/Welcome" className="login-button">
+      <NavLink exact to="/Welcome" className="login-nav">
         <GoogleLogin
+          className="login-button"
           clientId="326302789976-oocj06u09gb1en8rbsjuighdegvipcdc.apps.googleusercontent.com"
           buttonText="LOGIN WITH GOOGLE"
           onSuccess={responseGoogle}
